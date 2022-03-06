@@ -1,0 +1,37 @@
+.catalogue{
+    background-color: #363636;
+    color: white;
+    padding: 10px 60px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 7.5px;
+    width: 13rem;
+    height: 2.5rem;
+    text-align: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+    font-weight: bold;
+    color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    border: none;
+    padding: 7px 15px;
+    margin: 7.5px;
+    width: 13rem;
+    height: 2.5rem;
+    text-align: center;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login:hover{
+    cursor: pointer;
+}
+
+.login_title {
+    margin: 0 0 0 16px;
+}
