@@ -6,6 +6,7 @@ import ValuesSection from '../components/Home/ValuesSection'
 import ContactSection from '../components/Home/ContactSection'
 
 export default function Home() {
+
   return (
     <div>
       <Head>
@@ -14,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main id='main_page'>
         <CoverSection/>
         <DescriptionSection/>
         <ValuesSection/>

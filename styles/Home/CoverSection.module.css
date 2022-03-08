@@ -3,10 +3,7 @@
   background-size: cover; /* Resize the background image to cover the entire container */
   min-height: 100vh;
   scroll-snap-align: start;
-}
-
-.center {
-  
+  position: relative;
 }
 
 .arrow {
@@ -61,7 +58,7 @@
   }
 
   .logo {
-    padding-top: 10%;
+    padding-top: 7%;
   }
 
   .button_container{

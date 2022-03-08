@@ -5,16 +5,13 @@ import styles from '../../styles/Home/CoverSection.module.css'
 import home_logo from '../../public/home/home_logo.svg'
 import arrow_down_icon from '../../public/home/arrow_down_icon.svg'
 
-function scroll_page() {
-  let pageHeight = window.innerHeight;
-  window.scrollBy({
-    top: pageHeight,
-    left: 0,
-    behavior: 'smooth'
-  });
-}
-
 export default function CoverSection() {
+
+    function goToDescriptionSection(){
+      let element = document.getElementById("description-section")
+      element.scrollIntoView({behavior: "smooth"})
+    }
+
     return (
         <section className={styles.section}>
 
@@ -42,7 +39,7 @@ export default function CoverSection() {
             </div>
           </div>
           
-          <div className={styles.arrow} onClick={scroll_page}>
+          <div className={styles.arrow} onClick={goToDescriptionSection}>
             <Image
               src={arrow_down_icon}
               alt='Down arrow'

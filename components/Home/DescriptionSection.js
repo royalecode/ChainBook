@@ -2,7 +2,7 @@ import styles from '../../styles/Home/DescriptionSection.module.css'
 
 export default function DescriptionSection() {
     return (
-        <section className={styles.section}>
+        <section id='description-section' className={styles.section}>
             <div className={styles.filter}>
                 <h3 className={styles.h3_info}>
                     Chainbook is a web platform that wants to bring the 
