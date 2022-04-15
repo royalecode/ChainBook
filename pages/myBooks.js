@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Navbar from "../components/navbar"
 
-export default function Catalogue() {
+export default function MyBooks() {
     return (
       <div>
         <Head>
