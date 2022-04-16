@@ -1,0 +1,184 @@
+.publish_page {
+    margin: 10px 20px;
+}
+
+.paragraph {
+    font-weight: bold;
+}
+
+.file_info {
+    text-align: center;
+    font-size: 15px;
+    color: gray;
+}
+
+.written_data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.written_data > input:first-of-type {
+    margin-top: 25px;
+}
+
+.textfield {
+    margin: 10px 0;
+    border: 0px;
+    border-bottom: 1px solid black;
+    box-sizing: border-box; 
+    padding: 5px;
+    color: gray;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.textfield::placeholder {
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.radio_group {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.image_selection_alignment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image_selection_alignment > :first-child {
+    margin-bottom: 15px;
+}
+
+.custom_image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 145px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.custom_image > input {
+    display: none;
+}
+
+.icon {
+    padding: 20px;
+    width: 50px;
+    height: 50px;
+    background: url("../../public/publish/add_image_icon.svg") no-repeat scroll 0 0 transparent;
+}
+
+.default_image {
+    width: 130px;
+    height: 145px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-image: url(../../public/publish/default_image.png);
+    background-repeat: no-repeat;
+}
+
+.checkbox_group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.checkbox_group > button {
+    background-color: #EFEFEF;
+    padding: 8px 0;
+    border-radius: 30px;
+    border: 0px;
+    flex: 3 0 30%;
+    margin: 6px 5px;
+}
+
+.image_selection_alignment > div > input[type="radio"] {
+    accent-color: #DF783D;
+}
+
+.textarea {
+    width: 100%;
+    border: 0.1px solid gray;
+    border-radius: 10px;
+    padding:10px;
+}
+
+.price_selection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.price_selection > * {
+    margin: 0 10px;
+    padding: 0;
+}
+
+.price_selection > input {
+    width: 50px;
+}
+
+.crypto_convertor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.crypto_price_text {
+    margin-right: 8px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.dollar_text_icon {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: -6px;
+}
+
+.out_margin_bot {
+    margin-bottom: 0;
+}
+
+.free_check {
+    accent-color: #DF783D;
+    text-align: center;
+}
+
+.free_check > input {
+    margin-right: 10px;
+}
+
+.div_center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.submit_button {
+    background-color: #DF783D;
+    border-radius: 15px;
+    border: 0px;
+    padding: 10px 30px;
+    width: 100%;
+    margin: 20px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
