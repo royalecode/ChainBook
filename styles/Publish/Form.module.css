@@ -46,6 +46,10 @@
     justify-content: space-evenly;
 }
 
+.radio_group > div >  input[type="radio"] {
+    accent-color: #DF783D;
+}
+
 .image_selection_alignment {
     display: flex;
     flex-direction: column;
@@ -98,13 +102,23 @@
     width: 100%;
 }
 
-.checkbox_group > button {
+.back_gray {
+    background-color: #EFEFEF;
+}
+
+.back_orange {
+    background: #F3CEB0 !important;
+}
+
+.checkbox_group > div {
     background-color: #EFEFEF;
     padding: 8px 0;
     border-radius: 30px;
     border: 0px;
     flex: 3 0 30%;
     margin: 6px 5px;
+    text-align: center;
+    font-size: 14px;
 }
 
 .image_selection_alignment > div > input[type="radio"] {
@@ -116,6 +130,7 @@
     border: 0.1px solid gray;
     border-radius: 10px;
     padding:10px;
+    font-family: 'Inter';
 }
 
 .price_selection {
