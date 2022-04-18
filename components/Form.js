@@ -13,30 +13,10 @@ const fileTypes = ["pdf"];
 
 export default function Form() {
 
-    function destroyObject() {
-        const Monster = Moralis.Object.extend("Content");
-        const query = new Moralis.Query(Monster);
-
-        //get monster with id xWMyZ4YEGZ
-        query.get("hCNsjFswwWpUg36WqF9CAbec")
-        .then((monster) => {
-        // The object was retrieved successfully.
-        monster.destroy().then((monster) => {
-            // The object was deleted from the Moralis Cloud.
-        }, (error) => {
-            // The delete failed.
-            // error is a Moralis.Error with an error code and message.
-        });
-        }, (error) => {
-        // The object was not retrieved successfully.
-        // error is a Moralis.Error with an error code and message.
-        });
-    }
-
     const {isAuthenticated, authenticate, authError, user} = useMoralis(); 
 
-    let backColorBitcoin = false, backColorDeFi = false, backColorStaking = false, 
-        backColorFarming = false, backColorSolidity = false, backColorTrading = false;
+    let categories = [false, false, false, false, false, false];
+    let typeFlag, titleFlag, authorFlag, walletFlag, languageFlag, fileFlag, imageFlag, synopsisFlag, priceFlag = false;
 
     const [pdf, setFile] = useState(null);
     const handleChange = (pdf) => {
@@ -50,11 +30,14 @@ export default function Form() {
         return file.hash();
     }
 
-    async function uploadObjectToDatabase(title, author, claim_wallet, author_wallet, type, language, 
-        price, synopsis, hashFile, isDefaultImage, hashImage, bitcoinCategory, solidityCategory, 
-        stakingCategory, farmingCategory, tradingCategory, defiCategory) {
+    async function uploadImageToIPFS(image) {
+        const file = new Moralis.File('cover_photo', image)
+        await file.saveIPFS();
+        return file.hash();
+    }
 
-        const categories = [bitcoinCategory, solidityCategory, stakingCategory, farmingCategory, tradingCategory, defiCategory];
+    async function uploadObjectToDatabase(title, author, claim_wallet, author_wallet, type, language, 
+        price, synopsis, hashFile, isDefaultImage, hashImage) {
 
         const content = new Moralis.Object('Book');
         content.set('title', title);
@@ -72,8 +55,35 @@ export default function Form() {
         await content.save()
     }
 
-    function checkFields(field) {
+    function checkFields(event) {
+        let isCorrect = True;
 
+        if (event.target.type.value == '') document.getElementById("errorType").className = styles.show;
+        else document.getElementById("errorType").className = styles.hidden;
+
+        if (event.target.title.value == '') document.getElementById("errorTitle").className = styles.show;
+        else document.getElementById("errorTitle").className = styles.hidden;
+
+        if (event.target.author.value == '') document.getElementById("errorAuthor").className = styles.show;
+        else document.getElementById("errorAuthor").className = styles.hidden;
+
+        if (event.target.claim_wallet.value === '') document.getElementById("errorWallet").className = styles.show;
+        else document.getElementById("errorWallet").className = styles.hidden;
+
+        if (event.target.language.value === '') document.getElementById("errorLanguage").className = styles.show;
+        else document.getElementById("errorLanguage").className = styles.hidden;
+
+        if (event.target.synopsis.value === '') document.getElementById("errorSynopsis").className = styles.show;
+        else document.getElementById("errorSynopsis").className = styles.hidden;
+
+        if (pdf == null) document.getElementById("errorFile").className = styles.show;
+        else document.getElementById("errorFile").className = styles.hidden;
+
+        if (event.target.image_choice.value === 'custom' && event.target.image_upload.value == '') document.getElementById("errorImage").className = styles.show;
+        else document.getElementById("errorImage").className = styles.hidden;
+
+        if (event.target.price.value === '' & event.target.isFree.checked == false) document.getElementById("errorPrice").className = styles.show;
+        else document.getElementById("errorPrice").className = styles.hidden;
     }
 
     function logEvent(event) {
@@ -82,8 +92,8 @@ export default function Form() {
         console.log(event.target.author.value);
         console.log(event.target.claim_wallet.value);
         console.log(event.target.language.value);
-        console.log(pdf.name);
-        //console.log(event.target.image_upload.value);
+        console.log(pdf);
+        console.log(event.target.image_upload.value);
         console.log(event.target.image_choice.value);
         console.log(event.target.synopsis.value);
         console.log(event.target.price.value);
@@ -91,86 +101,94 @@ export default function Form() {
     }
 
     const registerContent = async (event) => {
-        //destroyObject();
         let proceed = false;
+        let hashImage = "null";
         event.preventDefault();
+        checkFields(event);
         if (!isAuthenticated) {
             console.log("hola");
             await authenticate().then(user => {
                 console.log(user);
                 if (user != undefined) proceed = !proceed;
             });
-            
         } else { 
             proceed = !proceed;
         }
 
         if (proceed == true) {
-            if (pdf.name != null) {
+            //check fileds are correct in the next if
+            if (pdf != null) {
                 let hashFile = await uploadFileToIPFS();
-                console.log(hashFile);
+
+                let isDefaultImage = (event.target.image_choice.value == 'default');
+                if (!isDefaultImage) {
+                    let image = document.getElementById('image_upload');
+                    hashImage = await uploadImageToIPFS(image.files[0]);
+                    console.log(hashImage);
+                }
+
                 uploadObjectToDatabase(event.target.title.value, event.target.author.value, 
                     event.target.claim_wallet.value, user.attributes.ethAddress, event.target.type.value, event.target.language.value, 
-                    event.target.price.value, event.target.synopsis.value, hashFile, true, "null", backColorBitcoin,
-                    backColorSolidity, backColorStaking, backColorFarming, backColorTrading, 
-                    backColorDeFi);
+                    event.target.price.value, event.target.synopsis.value, hashFile, isDefaultImage, 
+                    hashImage);
                 logEvent(event);
             }
+            logEvent(event);
         }
     };
 
     const bitcoinButtonClicked = () => {
-        if (!backColorBitcoin) {
+        if (!categories[0]) {
             document.getElementById("btc_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("btc_button_id").style.background = "#EFEFEF";
         }
-        backColorBitcoin = !backColorBitcoin;
+        categories[0] = !categories[0];
     }
 
     const stakeButtonClicked = () => {
-        if (!backColorStaking) {
+        if (!categories[1]) {
             document.getElementById("stake_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("stake_button_id").style.background = "#EFEFEF";
         }
-        backColorStaking = !backColorStaking;
+        categories[1] = !categories[1];
     }
 
     const tradingButtonClicked = () => {
-        if (!backColorTrading) {
+        if (!categories[2]) {
             document.getElementById("trade_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("trade_button_id").style.background = "#EFEFEF";
         }
-        backColorTrading = !backColorTrading;
+        categories[2] = !categories[2];
     }
 
     const solidityButtonClicked = () => {
-        if (!backColorSolidity) {
+        if (!categories[3]) {
             document.getElementById("sol_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("sol_button_id").style.background = "#EFEFEF";
         }
-        backColorSolidity = !backColorSolidity;
+        categories[3] = !categories[3];
     }
 
     const defiButtonClicked = () => {
-        if (!backColorDeFi) {
+        if (!categories[4]) {
             document.getElementById("defi_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("defi_button_id").style.background = "#EFEFEF";
         }
-        backColorDeFi = !backColorDeFi;
+        categories[4] = !categories[4];
     }
 
     const farmingButtonClicked = () => {
-        if (!backColorFarming) {
+        if (!categories[5]) {
             document.getElementById("far_button_id").style.background = "#F3CEB0";
         } else {
             document.getElementById("far_button_id").style.background = "#EFEFEF";
         }
-        backColorFarming = !backColorFarming;
+        categories[5] = !categories[5];
     }
 
     return (
@@ -308,6 +326,18 @@ export default function Form() {
                     <input type="checkbox" id="freeChoice1"
                         name="isFree"/>
                     <label htmlFor="freeChoice1">FREE</label>        
+                </div>
+
+                <div className={styles.error_messages}>
+                    <p id='errorType' className={styles.hidden}>You must choose a type</p>
+                    <p id='errorTitle' className={styles.hidden}>Title field missing</p>
+                    <p id='errorAuthor' className={styles.hidden}>Author / Nickname field missing</p>
+                    <p id='errorWallet' className={styles.hidden}>Claim Wall field missing</p>
+                    <p id='errorLanguage' className={styles.hidden}>You must choose a language</p>
+                    <p id='errorFile' className={styles.hidden}>An uploaded PDF is mandatory</p>
+                    <p id='errorImage' className={styles.hidden}>You forgot to upload the cover image</p>
+                    <p id='errorSynopsis' className={styles.hidden}>Synopsis text is missing</p>
+                    <p id='errorPrice' className={styles.hidden}>You must set up a price</p>
                 </div>
 
                 <div className={styles.div_center}>

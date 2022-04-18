@@ -197,3 +197,21 @@
     font-size: 15px;
 }
 
+.error_messages {
+    line-height: 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 25px;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: flex;
+    font-size: 15px;
+    color: #ed4337;
+    margin: 0;
+}
