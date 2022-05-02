@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useMoralis } from "react-moralis";
-import { Moralis } from 'moralis'
 
 import Image from "next/image";
+import Router from 'next/router'
 
 import styles from '../styles/Publish/Form.module.css'
 import polygon_icon from '../public/publish/polygon_crypto_icon.svg'
@@ -13,10 +13,9 @@ const fileTypes = ["pdf"];
 
 export default function Form() {
 
-    const {isAuthenticated, authenticate, authError, user} = useMoralis(); 
+    const {Moralis, isAuthenticated, authenticate, authError, user} = useMoralis(); 
 
     let categories = [false, false, false, false, false, false];
-    let typeFlag, titleFlag, authorFlag, walletFlag, languageFlag, fileFlag, imageFlag, synopsisFlag, priceFlag = false;
 
     const [pdf, setFile] = useState(null);
     const handleChange = (pdf) => {
@@ -31,13 +30,14 @@ export default function Form() {
     }
 
     async function uploadImageToIPFS(image) {
+        // Save file recieved by parameter to IPFS
         const file = new Moralis.File('cover_photo', image)
         await file.saveIPFS();
         return file.hash();
     }
 
     async function uploadObjectToDatabase(title, author, claim_wallet, author_wallet, type, language, 
-        price, synopsis, hashFile, isDefaultImage, hashImage) {
+        price, synopsis, hashFile, isDefaultImage, hashImage, isFree) {
 
         const content = new Moralis.Object('Book');
         content.set('title', title);
@@ -52,38 +52,68 @@ export default function Form() {
         content.set('hashFile', hashFile);
         content.set('hashImage', hashImage);
         content.set('categories', categories);
+        content.set('isFree', isFree);
         await content.save()
     }
 
     function checkFields(event) {
-        let isCorrect = True;
+        let isCorrect = true;
 
-        if (event.target.type.value == '') document.getElementById("errorType").className = styles.show;
+        if (event.target.type.value == '') {
+            document.getElementById("errorType").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorType").className = styles.hidden;
 
-        if (event.target.title.value == '') document.getElementById("errorTitle").className = styles.show;
+        if (event.target.title.value == '') {
+            document.getElementById("errorTitle").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorTitle").className = styles.hidden;
 
-        if (event.target.author.value == '') document.getElementById("errorAuthor").className = styles.show;
+        if (event.target.author.value == '') {
+            document.getElementById("errorAuthor").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorAuthor").className = styles.hidden;
 
-        if (event.target.claim_wallet.value === '') document.getElementById("errorWallet").className = styles.show;
+        if (event.target.claim_wallet.value === '') {
+            document.getElementById("errorWallet").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorWallet").className = styles.hidden;
 
-        if (event.target.language.value === '') document.getElementById("errorLanguage").className = styles.show;
+        if (event.target.language.value === '') {
+            document.getElementById("errorLanguage").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorLanguage").className = styles.hidden;
 
-        if (event.target.synopsis.value === '') document.getElementById("errorSynopsis").className = styles.show;
+        if (event.target.synopsis.value === '') {
+            document.getElementById("errorSynopsis").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorSynopsis").className = styles.hidden;
 
-        if (pdf == null) document.getElementById("errorFile").className = styles.show;
+        if (pdf == null) {
+            document.getElementById("errorFile").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorFile").className = styles.hidden;
 
-        if (event.target.image_choice.value === 'custom' && event.target.image_upload.value == '') document.getElementById("errorImage").className = styles.show;
+        if (event.target.image_choice.value === 'custom' && event.target.image_upload.value == '') {
+            document.getElementById("errorImage").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorImage").className = styles.hidden;
 
-        if (event.target.price.value === '' & event.target.isFree.checked == false) document.getElementById("errorPrice").className = styles.show;
+        if (event.target.price.value === '' & event.target.isFree.checked == false) {
+            document.getElementById("errorPrice").className = styles.show;
+            isCorrect = isCorrect && false;
+        }
         else document.getElementById("errorPrice").className = styles.hidden;
+    
+        return isCorrect;
     }
 
     function logEvent(event) {
@@ -104,9 +134,11 @@ export default function Form() {
         let proceed = false;
         let hashImage = "null";
         event.preventDefault();
-        checkFields(event);
+
+        //console.log(event.target.isFree.checked);
+
         if (!isAuthenticated) {
-            console.log("hola");
+            // console.log("hola");
             await authenticate().then(user => {
                 console.log(user);
                 if (user != undefined) proceed = !proceed;
@@ -115,25 +147,25 @@ export default function Form() {
             proceed = !proceed;
         }
 
-        if (proceed == true) {
-            //check fileds are correct in the next if
-            if (pdf != null) {
-                let hashFile = await uploadFileToIPFS();
+        //proceed == false
+        if (proceed == true && checkFields(event)) {
+            let hashFile = await uploadFileToIPFS();
 
-                let isDefaultImage = (event.target.image_choice.value == 'default');
-                if (!isDefaultImage) {
-                    let image = document.getElementById('image_upload');
-                    hashImage = await uploadImageToIPFS(image.files[0]);
-                    console.log(hashImage);
-                }
-
-                uploadObjectToDatabase(event.target.title.value, event.target.author.value, 
-                    event.target.claim_wallet.value, user.attributes.ethAddress, event.target.type.value, event.target.language.value, 
-                    event.target.price.value, event.target.synopsis.value, hashFile, isDefaultImage, 
-                    hashImage);
-                logEvent(event);
+            let isDefaultImage = (event.target.image_choice.value == 'default');
+            if (!isDefaultImage) {
+                let image = document.getElementById('image_upload');
+                hashImage = await uploadImageToIPFS(image.files[0]);
+                console.log(hashImage);
             }
-            logEvent(event);
+
+            uploadObjectToDatabase(event.target.title.value, event.target.author.value, 
+                event.target.claim_wallet.value, user.attributes.ethAddress, event.target.type.value, event.target.language.value, 
+                event.target.price.value, event.target.synopsis.value, hashFile, isDefaultImage, 
+                hashImage, event.target.isFree.checked);
+            
+            Router.push('/catalogue')
+            //console.log(categories)
+            //logEvent(event); 
         }
     };
 

@@ -8,9 +8,15 @@ import wallet_icon from '../public/navbar/wallet_icon.svg'
 export default function Navbar(){
     const [style,setStyle]= useState("navbar1")
 
-    const changeClass=(e)=>{
+    const changeClass = async(e)=>{
         if(style=="navbar1"){
+            let height = document.getElementsByClassName("mobile-navbar")[0].offsetHeight;
             setStyle("navbar_change");
+            await new Promise(r => setTimeout(r, 10));
+            let elements = document.getElementsByClassName("navbar_change");
+            let prop = height + "px 0";
+            elements[0].style.margin = prop;
+            
         }else if(style=="navbar_change"){
             setStyle("navbar1");
         }   
@@ -54,7 +60,7 @@ export default function Navbar(){
                     />
                 </div>
                 <h4 className='navbar-title'>ChainBook</h4>
-                <div className="wallet-connect-button" onClick={goToDescriptionSection}>
+                <div className="wallet-connect-button-mobile" onClick={goToDescriptionSection}>
                     <Image
                     src={wallet_icon}
                     alt='Wallet Logo'

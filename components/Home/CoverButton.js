@@ -7,14 +7,16 @@ import { useMoralis } from "react-moralis"
 
 export default function CoverButton ({title, icon=false}) {
     
-    const {isAuthenticated, authenticate, authError, logout} = useMoralis(); 
+    const {isAuthenticated, isAuthenticating, isLoggingOut, authenticate,
+        authError, logout} = useMoralis(); 
     
     if (!title) return null
     
     if (icon) {
         if (!isAuthenticated) {
             return (
-                <button className={styles.login} onClick={authenticate}>
+                <button className={styles.login} onClick={authenticate} 
+                    disabled={isAuthenticating}>
                     <div>
                         <Image
                             src={metamask_icon}
@@ -27,7 +29,8 @@ export default function CoverButton ({title, icon=false}) {
             )
         } else {
             return (
-                <button className={styles.login} onClick={logout}>
+                <button className={styles.login} onClick={logout} 
+                    disabled={isLoggingOut}>
                     <div>
                         <Image
                             src={metamask_icon}
