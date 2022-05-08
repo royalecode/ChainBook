@@ -1,7 +1,15 @@
 import Head from "next/head"
 import Navbar from "../components/navbar"
+import Downloads from "../components/Downloads"
+import Solidity from "../components/Solidity"
+import Farming from "../components/Farming"
+import Staking from "../components/Staking"
+import Bitcoin from "../components/Bitcoin"
+import Defi from "../components/Defi"
+import Trading from "../components/Trading"
 
 export default function Catalogue() {
+
     return (
       <div>
         <Head>
@@ -11,6 +19,14 @@ export default function Catalogue() {
         </Head>
 
         <Navbar/>
+
+        <Downloads />
+        <Solidity />
+        <Bitcoin />
+        <Defi />
+        <Staking />
+        <Trading />
+        <Farming />
 
       </div>
     )

@@ -1,0 +1,18 @@
+.component {
+    padding: 5px 15px;
+    width: 100vw;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.book {
+    margin: 0 15px;
+}

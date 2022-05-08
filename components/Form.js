@@ -39,7 +39,7 @@ export default function Form() {
     async function uploadObjectToDatabase(title, author, claim_wallet, author_wallet, type, language, 
         price, synopsis, hashFile, isDefaultImage, hashImage, isFree) {
 
-        const content = new Moralis.Object('Book');
+        const content = new Moralis.Object('Article');
         content.set('title', title);
         content.set('author', author);
         content.set('claim_wallet', claim_wallet);
@@ -53,6 +53,7 @@ export default function Form() {
         content.set('hashImage', hashImage);
         content.set('categories', categories);
         content.set('isFree', isFree);
+        content.set('downloads', 0)
         await content.save()
     }
 
@@ -135,20 +136,17 @@ export default function Form() {
         let hashImage = "null";
         event.preventDefault();
 
-        //console.log(event.target.isFree.checked);
-
         if (!isAuthenticated) {
-            // console.log("hola");
             await authenticate().then(user => {
                 console.log(user);
-                if (user != undefined) proceed = !proceed;
+                if (user != null) proceed = !proceed;
             });
         } else { 
             proceed = !proceed;
         }
 
-        //proceed == false
         if (proceed == true && checkFields(event)) {
+            console.log("he entrat")
             let hashFile = await uploadFileToIPFS();
 
             let isDefaultImage = (event.target.image_choice.value == 'default');
@@ -158,14 +156,14 @@ export default function Form() {
                 console.log(hashImage);
             }
 
+            console.log(user)
+
             uploadObjectToDatabase(event.target.title.value, event.target.author.value, 
                 event.target.claim_wallet.value, user.attributes.ethAddress, event.target.type.value, event.target.language.value, 
                 event.target.price.value, event.target.synopsis.value, hashFile, isDefaultImage, 
                 hashImage, event.target.isFree.checked);
             
             Router.push('/catalogue')
-            //console.log(categories)
-            //logEvent(event); 
         }
     };
 

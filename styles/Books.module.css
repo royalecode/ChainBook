@@ -1,0 +1,16 @@
+.title {
+    font-weight: bold;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    overflow: hidden;
+    font-size: 1em;
+}
+
+.author {
+    white-space: nowrap;
+    font-size: 0.5em;
+}
+
+.price {
+    font-size: 0.5em;
+}
