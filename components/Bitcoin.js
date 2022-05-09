@@ -4,14 +4,11 @@ import ScrollList from "../components/ScrollList";
 
 export default function Bitcoin() {
 
-    const [limit, setLimit] = useState(6);
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .equalTo("categories")
-            .limit(limit),
-        [limit],
-        {
+            .equalTo("bitcoin_category", true)
+        ,{
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },

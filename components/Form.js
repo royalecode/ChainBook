@@ -54,6 +54,12 @@ export default function Form() {
         content.set('categories', categories);
         content.set('isFree', isFree);
         content.set('downloads', 0)
+        content.set('bitcoin_category', categories[0])
+        content.set('staking_category', categories[1])
+        content.set('trading_category', categories[2])
+        content.set('solidity_category', categories[3])
+        content.set('defi_category', categories[4])
+        content.set('farming_category', categories[5])
         await content.save()
     }
 
@@ -343,7 +349,6 @@ export default function Form() {
                         <div className={styles.crypto_convertor}>
                             <p className={styles.crypto_price_text}>3.22</p>
                             <Image
-                                className={styles.polygon_icon}
                                 src={polygon_icon}
                                 alt='Polygon Logo'
                                 width={26}

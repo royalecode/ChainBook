@@ -6,7 +6,7 @@ export default function ScrollList({books, title}) {
       
     return (
         <div className={styles.component}>
-            <h3>{title}</h3>
+            <h2>{title}</h2>
             <div className={styles.list}>
             {books.map( (data,index) =>(
                 <div key={index} className={styles.book}>

@@ -4,14 +4,10 @@ import ScrollList from "../components/ScrollList";
 
 export default function Farming() {
 
-    const [limit, setLimit] = useState(6)
-
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .descending("downloads")
-            .limit(limit),
-        [limit],
-        {
+            .equalTo("farming_category", true)
+        ,{
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },

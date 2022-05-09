@@ -131,6 +131,7 @@ a {
     color: white;
     background-color: #DF783D; 
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
+    z-index: 20;
   }
 
   .navbar3 {
