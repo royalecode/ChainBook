@@ -1,5 +1,5 @@
 .info {
-    width: 35vw;
+    width: min(35vw,150px);
 }
 
 .title {
@@ -45,7 +45,6 @@
 
 .image {
     position: relative;
-    height: 170px;
-    width: 35vw;
+    width: min(35vw, 150px);
     box-shadow: 4px 4px 2px -2px rgb(185, 178, 178);
 }
