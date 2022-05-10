@@ -34,12 +34,12 @@
 }
 
 .price {
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin: 0 5px 0 0;
 }
 
 .price_free {
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin: 8px 0 0 0;
 }
 
@@ -47,4 +47,5 @@
     position: relative;
     height: 170px;
     width: 35vw;
+    box-shadow: 4px 4px 2px -2px rgb(185, 178, 178);
 }

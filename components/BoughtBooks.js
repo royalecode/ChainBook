@@ -1,49 +1,64 @@
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
+import styles from "../styles/BoughtBooks.module.css";
 import React from "react";
 import Book from "./Book"
+import Link from "next/link"
 
-export default function BoughtBooks({list}) {
+export default function BoughtBooks({ list }) {
 
-  const {Moralis, user} = useMoralis();
+  const { Moralis, user } = useMoralis();
   const [books, setBooks] = useState()
 
   useEffect(() => {
     const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
     const appId = "vE8qvzkr4JMOcA4WzZDzWB5QOUnTgpoyccVtnrtK"
-    Moralis.start({serverUrl, appId})
+    Moralis.start({ serverUrl, appId })
     let userBooks = Moralis.User.current().attributes.books;
     setBooks(userBooks);
   }, [Moralis])
 
-  const { data, error, isLoading } = useMoralisQuery("Article", query =>
-        query
-            .equalTo("objectId", books)
-        [books],{
-            live: true,
-            onLiveEnter: (entity, all) => [...all, entity],
-        },
+  const { data, error, isLoading } = useMoralisQuery("Article", query => {
+    console.log("books", books)
+    const exisde = [
+      "86eZfqKFtAyj8UZL6hhXaQjj",
+      "BHbVEcwMuHpMSc3hagImK3Dl",
+      "cJ7UBHNvwn4oWX4EnmxZ4E2e",
+      "e7L8JBjxR9NDXxxXrOOnNvAG",
+      "C91x6bLUB8RlifugUPu4H7UB",
+      "WS7DgQ4QfW6WoU7HnPJOZd1i",
+      "qxudCvJASSbhpyxUziH8HEv1"
+  ]
+    return query.containedIn("objectId", books)
+  },
+    [books], {
+    live: true,
+    onLiveEnter: (entity, all) => [...all, entity],
+  }
   );
 
-  console.log(data)
+
+  console.log("data", data)
 
 
   if (error && books === undefined) {
-      return <>hola</>;
+    return <>hola</>;
   }
-    
+
   if (isLoading && books === undefined) {
-      return <>hola2</>;
+    return <>hola2</>;
   }
-    
+
   return (
-    <div>
-    {data.map( (e,index) =>(
-        <div key={index} >
-            <Book data={e}/> 
-        </div>
-    ))}
-  </div>
+    <div className={styles.list}>
+      {data.map((e, index) => (
+        <Link key={index} className={styles.book} href={`detail/${e['id']}`} passHref>
+          <div>
+              <Book data={e} myBook={true}/> 
+          </div>
+        </Link>
+      ))}
+    </div>
   )
 
   /*const update = async () => {

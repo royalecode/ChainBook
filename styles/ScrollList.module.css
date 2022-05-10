@@ -17,6 +17,10 @@
     display: none;
 }
 
+.title {
+    margin-bottom: 10px;
+}
+
 .book {
     position: relative;
 }

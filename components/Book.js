@@ -2,8 +2,9 @@ import Image from "next/image"
 import Default_Image from "../public/default_book_image.png"
 import styles from "../styles/Books.module.css"
 import polygon_icon from "../public/publish/polygon_crypto_icon.svg"
+import Link from "next/link"
 
-export default function Library({data}) {
+export default function Library({data, myBook}) {
 
     const regExp = /[a-zA-Z]/g;
 
@@ -39,19 +40,20 @@ export default function Library({data}) {
                 }
             </div>
 
-            {!data['attributes'].isFree && 
-            <div className={styles.price_group}>
-                <p className={styles.price}>{data['attributes'].price}</p>
-                <Image
-                    src={polygon_icon}
-                    alt='Polygon Logo'
-                    width={18}
-                    height={18}  
-                />
-            </div>
+            {!myBook && !data['attributes'].isFree && 
+                <div className={styles.price_group}>
+                    <p className={styles.price}>{data['attributes'].price}</p>
+                    <Image
+                        src={polygon_icon}
+                        alt='Polygon Logo'
+                        width={18}
+                        height={18}  
+                    />
+                </div>
             }
-            
-            {data['attributes'].isFree && <p className={styles.price_free}>FREE</p>}
+                
+            {!myBook && data['attributes'].isFree && <p className={styles.price_free}>FREE</p>}
+                
         </div>
     )
     

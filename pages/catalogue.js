@@ -20,13 +20,21 @@ export default function Catalogue() {
 
         <Navbar/>
 
-        <Downloads />
-        <Solidity />
-        <Bitcoin />
-        <Defi />
-        <Staking />
-        <Trading />
-        <Farming />
+        <div id="library">
+          <Downloads />
+          <Solidity />
+          <Bitcoin />
+          <Defi />
+          <Staking />
+          <Trading />
+          <Farming />
+          <style jsx>{`
+          div {
+            padding-top: 30px;
+            padding-bottom: 30px;
+          }
+        `}</style>
+        </div>
 
       </div>
     )

@@ -57,8 +57,20 @@ export default function MyBooks() {
 
       <Navbar/>
 
-      <BoughtBooks books={getBooks}/>
+      <div>
+        <h2>My Books</h2>
+        <BoughtBooks books={getBooks}/>
+        <style jsx>{`
+            div {
+              padding-top: 45px;
+              padding-bottom: 25px;
+            }
 
+            h2 {
+              padding-left: 15px;
+            }
+          `}</style>
+      </div>
     </div>
   )
   

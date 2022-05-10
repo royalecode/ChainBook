@@ -12,7 +12,14 @@ export default function Publish() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar/>
-      <Form/>
+      <div>
+        <Form/>
+        <style jsx>{`
+            div {
+              padding-top: 45px;
+            }
+          `}</style>
+      </div>
     </div>
   )
 }
