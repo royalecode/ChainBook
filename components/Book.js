@@ -12,7 +12,7 @@ export default function Library({ data, myBook }) {
     const { width: coverWidth, ref: coverRef } = useResizeDetector();
 
     return (
-        <div>
+        <div className={styles.book_inner_div}>
             <div className={styles.image} ref={coverRef}>
                 {!data['attributes'].isDefaultImage &&
                     <Image

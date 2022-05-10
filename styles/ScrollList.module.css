@@ -8,12 +8,18 @@
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
+    overflow-y: visible;
     scroll-behavior: smooth;
     gap: 15px;
 }
 
 .list::-webkit-scrollbar {
     display: none;
+}
+
+
+.list > div:hover {
+    cursor: pointer;
 }
 
 .title {
@@ -24,4 +30,9 @@
 
 .book {
     position: relative;
+    overflow-y: visible;
+}
+
+.book_inner_div {
+    overflow-y: visible;
 }

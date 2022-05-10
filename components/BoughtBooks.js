@@ -7,39 +7,36 @@ import Link from "next/link"
 
 export default function BoughtBooks({ list }) {
 
-  const { Moralis, user } = useMoralis();
+  const { Moralis, user, isAuthenticated, authenticate } = useMoralis();
   const [books, setBooks] = useState()
 
-  useEffect(() => {
+  /*useEffect(() => {
     const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
     const appId = "vE8qvzkr4JMOcA4WzZDzWB5QOUnTgpoyccVtnrtK"
     Moralis.start({ serverUrl, appId })
     let userBooks = Moralis.User.current().attributes.books;
     setBooks(userBooks);
-  }, [Moralis])
+  }, [Moralis])*/
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isAuthenticated) {
+        setBooks(user.attributes.books); 
+      }    
+    },100);
+    return () => {
+      if (isAuthenticated) clearInterval(interval);
+    }
+  }, [isAuthenticated, user]);
 
   const { data, error, isLoading } = useMoralisQuery("Article", query => {
-    console.log("books", books)
-    const exisde = [
-      "86eZfqKFtAyj8UZL6hhXaQjj",
-      "BHbVEcwMuHpMSc3hagImK3Dl",
-      "cJ7UBHNvwn4oWX4EnmxZ4E2e",
-      "e7L8JBjxR9NDXxxXrOOnNvAG",
-      "C91x6bLUB8RlifugUPu4H7UB",
-      "WS7DgQ4QfW6WoU7HnPJOZd1i",
-      "qxudCvJASSbhpyxUziH8HEv1"
-  ]
-    return query.containedIn("objectId", books)
-  },
-    [books], {
-    live: true,
-    onLiveEnter: (entity, all) => [...all, entity],
-  }
+      return query.containedIn("objectId", books)
+    },
+      [user, books], {
+      live: true,
+      onLiveEnter: (entity, all) => [...all, entity],
+    }
   );
-
-
-  console.log("data", data)
-
 
   if (error && books === undefined) {
     return <>hola</>;
@@ -69,43 +66,4 @@ export default function BoughtBooks({ list }) {
     await user.save();
     console.log(user.attributes.books);
   }*/
-
-  /*useEffect(() => {
-    async function fetchMoralis() {
-        const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
-        const appId = "vE8qvzkr4JMOcA4WzZDzWB5QOUnTgpoyccVtnrtK"
-        Moralis.start({serverUrl, appId})
-        const userBooks = Moralis.User.current().attributes.books;
-        console.log(userBooks);
-        let Article = Moralis.Object.extend("Article");
-        let localBooks = [];
-        userBooks.forEach(async (book) => {
-            console.log(book)
-            let query = new Moralis.Query(Article);
-            query.equalTo("objectId", book);
-            let results = await query.find()
-            localBooks.push(results[0]);
-        });
-        setBooks(localBooks);
-        console.log(localBooks);  
-    }    
-    fetchMoralis();
-  }, [Moralis])
-
-  if (books === undefined) {
-    return <>Still Loading...</>
-  }
-
-  return (
-    <>
-    {books.map((data,index)=>(
-        <div key={index}>
-            <h3>{data['attributes'].title}</h3>
-            <p>{data['attributes'].author}</p>
-        </div>
-
-    ))}
-    </>  
-  )*/
-
 }

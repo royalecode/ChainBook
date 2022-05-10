@@ -11,7 +11,7 @@ export default function ScrollList({books, title}) {
             <div className={styles.list}>
             {books.map( (data,index) =>(
                 <Link key={index} className={styles.book} href={`detail/${data['id']}`} passHref>
-                    <div>
+                    <div className={styles.book_inner_div}>
                         <Book data={data} myBook={false}/> 
                     </div>
                 </Link>

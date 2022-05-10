@@ -48,3 +48,14 @@
     width: min(35vw, 150px);
     box-shadow: 4px 4px 2px -2px rgb(185, 178, 178);
 }
+
+.image:hover {
+    transform: scale(1.2);
+    overflow: visible;
+    cursor: pointer;
+    z-index: 300;
+}
+
+.book_inner_div {
+    overflow-y: visible;
+}
