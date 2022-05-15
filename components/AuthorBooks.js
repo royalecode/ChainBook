@@ -3,7 +3,7 @@ import ScrollList from "./ScrollList";
 
 export default function Detail({ author }) {
       
-    console.log(author)
+    //console.log(author)
 
     const { data, error, isLoading } = useMoralisQuery("Article", query => {
         return query
@@ -22,7 +22,7 @@ export default function Detail({ author }) {
         return <></>;
     }
 
-    console.log(data)
+    //console.log(data)
 
     return (
         <div>

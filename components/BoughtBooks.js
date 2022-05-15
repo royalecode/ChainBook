@@ -58,7 +58,7 @@ export default function BoughtBooks({ list }) {
   return (
     <div className={styles.list}>
       {data.map((e, index) => (
-        <Link key={index} className={styles.book} href={`detail/${e['id']}`} passHref>
+        <Link key={index} className={styles.book} href={`https://gateway.moralisipfs.com/ipfs/${e['attributes'].hashFile}`} passHref>
           <div>
               <Book data={e} myBook={true}/> 
           </div>

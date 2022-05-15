@@ -58,12 +58,6 @@ export default function Detail({ data }) {
                     {!regExp.test(data['attributes'].author) &&
                         <p className={styles.author}><span className={styles.span}>from </span>None</p>
                     } 
-                    <div className={styles.score}>
-                        <Stars /> 
-                        <Link href={'#review'}>
-                            <a className={styles.anchor}>Write a review</a>
-                        </Link>   
-                    </div> 
                 </div>         
             </div>
             <div>
