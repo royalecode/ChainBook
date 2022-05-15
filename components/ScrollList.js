@@ -3,11 +3,11 @@ import Book from "./Book"
 import styles from "../styles/ScrollList.module.css"
 import Link from "next/link"
 
-export default function ScrollList({books, title}) {
+export default function ScrollList({books, title, isTitle=false}) {
       
     return (
         <div className={styles.component}>
-            <h2 className={styles.title}>{title}</h2>
+            {!isTitle && <h2 className={styles.title}>{title}</h2>}
             <div className={styles.list}>
             {books.map( (data,index) =>(
                 <Link key={index} className={styles.book} href={`detail/${data['id']}`} passHref>

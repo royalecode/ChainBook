@@ -4,8 +4,7 @@ import BackButton from "../components/BackButton";
 import Stars from "../components/Stars";
 import Link from "next/Link";
 import Payment from "../components/Payment";
-import { useMoralisQuery } from "react-moralis";
-import ScrollList from "./ScrollList";
+import AuthorBooks from "./AuthorBooks";
 import Default_Image from "../public/default_book_image.png";
 import Review from "../components/Review";
 import { useResizeDetector } from "react-resize-detector"
@@ -15,15 +14,6 @@ export default function Detail({ data }) {
     //console.log(data);
     const regExp = /[a-zA-Z]/g;
     const { width: coverWidth, ref: coverRef } = useResizeDetector();
-
-    const { books, error, isLoading } = useMoralisQuery("Article", query =>
-        query
-            .equalTo("author", " ")
-        ,{
-            live: true,
-            onLiveEnter: (entity, all) => [...all, entity],
-        },
-    );
     
     if (data === undefined) {
         return <></>;
@@ -70,7 +60,7 @@ export default function Detail({ data }) {
                     } 
                     <div className={styles.score}>
                         <Stars /> 
-                        <Link href={'/catalogue'}>
+                        <Link href={'#review'}>
                             <a className={styles.anchor}>Write a review</a>
                         </Link>   
                     </div> 
@@ -83,8 +73,9 @@ export default function Detail({ data }) {
                 <h3>Synopsis</h3>
                 <p>{data['attributes'].synopsis}</p>
             </div>
-            <div>
-                {books != undefined && <ScrollList books={books} title={"Same author"}/>}
+
+            <div className={styles.other_books}>
+                <AuthorBooks author={data['attributes'].author}/>
             </div>
 
             <div>

@@ -1,4 +1,4 @@
-import { useMoralisQuery } from "react-moralis";
+import { useMoralisQuery, useMoralis } from "react-moralis";
 import {useState} from "react"
 import ScrollList from "../components/ScrollList";
 import styles from "../styles/Review.module.css";
@@ -11,6 +11,7 @@ export default function Review({objectId}) {
 
     //console.log(objectId);
 
+    const {Moralis, isAuthenticated, authenticate, authError} = useMoralis(); 
     const [width, setWidth] = useState(30);
     const [height, setHeight] = useState(30);
     const [source, _setSource] = useState([star_empty, star_empty, star_empty, star_empty, star_empty]);
@@ -35,11 +36,22 @@ export default function Review({objectId}) {
             console.log(event.target.name.value);
             console.log(event.target.comment.value);
             console.log(score);
+
+            if (isAuthenticated) {
+                const content = new Moralis.Object('Review');
+                content.set('name', event.target.name.value);
+                content.set('comment', event.target.comment.value);
+                content.set('score', score);
+                content.set('bookId', objectId);
+                await content.save();
+            } else {
+                authenticate();
+            }
         }
     }
       
     return (
-        <div className={styles.review_section}>
+        <div id="review" className={styles.review_section}>
             <h3>Write a review</h3>
 
             <div className={styles.stars}>

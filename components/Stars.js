@@ -1,5 +1,5 @@
 import { useMoralisQuery } from "react-moralis";
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import ScrollList from "../components/ScrollList";
 import star_empty from "../public/star-empty.svg";
 import star_filled from "../public/star-filled.svg";
@@ -23,9 +23,12 @@ export default function Stars({number}) {
         _setSource(sources);
     }
 
-    setSource(number);
+    useEffect(() => {
+        setSource(number);
+    }, [number])
 
     return (
+        <>
         <div>
             <div>
                 <Image
@@ -68,6 +71,14 @@ export default function Stars({number}) {
                 />
             </div>
         </div>
+        <style jsx>{`
+            div {
+              display: flex;
+              flex-direction: row;
+              margin: 5px 0;
+            }
+        `}</style>
+        </>
     );
     
 }

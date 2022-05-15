@@ -44,6 +44,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 15px;
+    gap: 80px;
 }
 
 .book_details > p {
@@ -60,4 +61,8 @@
 
 .synopsis_section > p {
     text-align: justify;
+}
+
+.other_books {
+    margin-top: 40px;
 }
