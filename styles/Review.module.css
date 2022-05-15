@@ -1,0 +1,56 @@
+.textfield {
+    margin: 20px 0;
+    border: 0px;
+    border-bottom: 1px solid black;
+    box-sizing: border-box; 
+    padding: 5px;
+    color: gray;
+    font-weight: bold;
+    font-size: 15px;
+    width: 100%;
+}
+
+.textfield::placeholder {
+    color: gray;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.textarea {
+    width: 100%;
+    border: 0.1px solid gray;
+    border-radius: 10px;
+    padding:10px;
+    font-family: 'Inter';
+}
+
+.send {
+    background-color: #DF783D;
+    border-radius: 15px;
+    border: 0px;
+    padding: 10px 30px;
+    width: 100px;
+    margin: 10px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.stars > div:hover {
+    cursor: pointer;
+}
+
+.review_section {
+    margin-top: 40px;
+}

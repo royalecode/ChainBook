@@ -3,7 +3,7 @@
 }
 
 .title {
-    font-weight: bold;
+    font-weight: 600;
     line-height: 1.2em;
     height: 2.5em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;
@@ -23,7 +23,8 @@
     text-overflow: ellipsis;
     font-size: 0.9em;
     margin-bottom: 0;
-    margin-top: 5px;
+    margin-top: 0px;
+    opacity: 0.5;
 }
 
 .price_group {
@@ -34,26 +35,30 @@
 }
 
 .price {
-    font-size: 0.9em;
+    font-size: 1em;
     margin: 0 5px 0 0;
+    font-weight: 500;
 }
 
 .price_free {
-    font-size: 0.9em;
-    margin: 8px 0 0 0;
+    font-size: 1em;
+    margin: 8px 5px 0 0;
+    font-weight: 500;
 }
 
 .image {
     position: relative;
     width: min(35vw, 150px);
     box-shadow: 4px 4px 2px -2px rgb(185, 178, 178);
+    transition: transform .2s ease-in-out;
 }
 
 .image:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     overflow: visible;
     cursor: pointer;
     z-index: 300;
+
 }
 
 .book_inner_div {

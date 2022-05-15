@@ -1,6 +1,7 @@
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import styles from "../styles/BoughtBooks.module.css";
+import LoginButton from "../components/Home/CoverButton";
 import React from "react";
 import Book from "./Book"
 import Link from "next/link"
@@ -32,18 +33,26 @@ export default function BoughtBooks({ list }) {
   const { data, error, isLoading } = useMoralisQuery("Article", query => {
       return query.containedIn("objectId", books)
     },
-      [user, books], {
+      [books], {
       live: true,
       onLiveEnter: (entity, all) => [...all, entity],
     }
   );
 
   if (error && books === undefined) {
-    return <>hola</>;
+    return <></>;
   }
 
   if (isLoading && books === undefined) {
-    return <>hola2</>;
+    return <></>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className={styles.login}>
+        <LoginButton title="Login with Metamask" icon={true}/>
+      </div>
+    );
   }
 
   return (

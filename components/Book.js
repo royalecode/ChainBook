@@ -46,21 +46,20 @@ export default function Library({ data, myBook }) {
                 {!regExp.test(data['attributes'].author) &&
                     <p className={styles.author}>None</p>
                 }
+                {!myBook && !data['attributes'].isFree &&
+                    <div className={styles.price_group}>
+                        <p className={styles.price}>{data['attributes'].price}</p>
+                        <Image
+                            src={polygon_icon}
+                            alt='Polygon Logo'
+                            width={18}
+                            height={18}
+                        />
+                    </div>
+                }
+
+                {!myBook && data['attributes'].isFree && <p className={styles.price_free}>FREE</p>}
             </div>
-
-            {!myBook && !data['attributes'].isFree &&
-                <div className={styles.price_group}>
-                    <p className={styles.price}>{data['attributes'].price}</p>
-                    <Image
-                        src={polygon_icon}
-                        alt='Polygon Logo'
-                        width={18}
-                        height={18}
-                    />
-                </div>
-            }
-
-            {!myBook && data['attributes'].isFree && <p className={styles.price_free}>FREE</p>}
 
         </div>
     )

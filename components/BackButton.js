@@ -7,7 +7,7 @@ export default function BackButton () {
     const router = useRouter();
 
     const backToCatalogue = () => {
-        router.push('./catalogue');
+        router.push('../catalogue');
     }
 
     return (
@@ -27,7 +27,7 @@ export default function BackButton () {
                     align-items: center;
                     align-content: center;
                     text-decoration: underline;
-                    margin: 25px 10px;
+                    margin-bottom: 25px;
                 }
 
                 .backButton:hover {

@@ -25,6 +25,12 @@ export default function Navbar(){
         }   
     }
 
+    const authentication = () => {
+        if (!isAuthenticated && !isAuthenticating) {
+            authenticate;
+        }
+    }
+
     return(
         <div className="navbar">
             <div className={style}>
@@ -36,7 +42,7 @@ export default function Navbar(){
                     <Link href="/catalogue"><a className="navbar3">Catalogue</a></Link>
                     <Link href="/publish"><a className="navbar3">Publish content</a></Link>
                     <Link href="/myBooks"><a className="navbar3">My books</a></Link>
-                    <div className="wallet-connect-button">
+                    <div className="wallet-connect-button" onClick={authentication}>
                         <Image
                         src={wallet_icon}
                         alt='Wallet Logo'
@@ -59,7 +65,7 @@ export default function Navbar(){
                     />
                 </div>
                 <h4 className='navbar-title'>ChainBook</h4>
-                <div className="wallet-connect-button-mobile" onClick={authenticate}>
+                <div className="wallet-connect-button-mobile" onClick={authentication}>
                     <Image
                     src={wallet_icon}
                     alt='Wallet Logo'

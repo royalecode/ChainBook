@@ -140,30 +140,12 @@
 }
 
 .price_selection > * {
-    margin: 0 10px;
+    margin: 0 5px;
     padding: 0;
 }
 
 .price_selection > input {
     width: 50px;
-}
-
-.crypto_convertor {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.crypto_price_text {
-    margin-right: 8px;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.dollar_text_icon {
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: -6px;
 }
 
 .out_margin_bot {
@@ -183,6 +165,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    gap: 50px;
 }
 
 .submit_button {

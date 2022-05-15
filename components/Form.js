@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useTokenPrice } from "react-moralis";
 
 import Image from "next/image";
 import Router from 'next/router'
@@ -336,18 +336,8 @@ export default function Form() {
                 <div className={styles.div_center}>
                     <div className={styles.price_selection}>
                         <input type="text" id="priceChoice1" className={styles.textfield}
-                            name="price" placeholder="0.00" />
-                        <p className={styles.dollar_text_icon}>$</p>
-                        <div>
-                            <Image
-                                src={exchange_arrow}
-                                alt='Arrows exchange'
-                                width={30}
-                                height={30}  
-                            />
-                        </div>
+                            name="price" placeholder="0.00"/>                        
                         <div className={styles.crypto_convertor}>
-                            <p className={styles.crypto_price_text}>3.22</p>
                             <Image
                                 src={polygon_icon}
                                 alt='Polygon Logo'
@@ -356,11 +346,11 @@ export default function Form() {
                             />
                         </div>
                     </div>
-                </div>
-                <div className={styles.free_check}>
-                    <input type="checkbox" id="freeChoice1"
-                        name="isFree"/>
-                    <label htmlFor="freeChoice1">FREE</label>        
+                    <div className={styles.free_check}>
+                        <input type="checkbox" id="freeChoice1"
+                            name="isFree"/>
+                        <label htmlFor="freeChoice1">FREE</label>        
+                    </div>
                 </div>
 
                 <div className={styles.error_messages}>

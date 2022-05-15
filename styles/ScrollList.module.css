@@ -1,16 +1,17 @@
 .component {
     width: 100vw;
+    margin-bottom: 40px;
 }
 
 .list {
-    padding: 0 15px;
+    padding: 15px 15px 0 15px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
     overflow-y: visible;
     scroll-behavior: smooth;
-    gap: 15px;
+    gap: 18px;
 }
 
 .list::-webkit-scrollbar {
@@ -30,9 +31,9 @@
 
 .book {
     position: relative;
-    overflow-y: visible;
+    overflow: visible;
 }
 
 .book_inner_div {
-    overflow-y: visible;
+    overflow: visible;
 }

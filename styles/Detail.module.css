@@ -1,0 +1,63 @@
+.image {
+    position: relative;
+    width: min(50vw, 175px);
+    box-shadow: 6px 6px 2px -2px rgb(185, 178, 178);
+    transition: transform .2s ease-in-out;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.detail {
+    padding: 70px 15px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+}
+
+.info > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.span {
+    color: gray;
+}
+
+.author {
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.anchor {
+    text-decoration: underline;
+    color: #DF783D;
+    font-weight: bold;
+}
+
+.score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.book_details > p {
+    margin: 5px 0;
+}
+
+.book_details {
+    margin-top: 40px;
+}
+
+.synopsis_section {
+    margin-top: 40px;
+}
+
+.synopsis_section > p {
+    text-align: justify;
+}

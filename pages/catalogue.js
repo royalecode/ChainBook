@@ -29,11 +29,11 @@ export default function Catalogue() {
           <Trading />
           <Farming />
           <style jsx>{`
-          div {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            padding-right: 15px;
-          }
+            div {
+              padding-top: 30px;
+              padding-bottom: 30px;
+              padding-right: 15px;
+            }
         `}</style>
         </div>
 
