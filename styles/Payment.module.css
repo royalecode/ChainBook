@@ -1,0 +1,93 @@
+.box {
+    border: 0.02em solid gray;
+    padding: 0 15px 25px 15px;
+    margin-top: 35px;
+}
+
+.payment {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.title {
+    margin-top: 0;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon {
+    margin-left: 10px;
+}
+
+.read_btn {
+    background-color: #DF783D;
+    border-radius: 15px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    color: white;
+}
+
+.read_btn_pay {
+    background-color: white;
+    border: 0.02em solid black;
+    border-radius: 15px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.read_btn_pay > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.read_btn_pay > div > p {
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.read_btn_text {
+    font-weight: 500;
+}
+
+.pay {
+    background-color: #DF783D;
+    border-radius: 15px;
+    border: 0px;
+    padding: 10px 30px;
+    margin: 0px 0;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.price > p {
+    margin: 0;
+}
+
+.pay > p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/*.buttons {
+    display: flex;
+    justify-content: center;
+}*/
+

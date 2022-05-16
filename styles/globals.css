@@ -72,7 +72,6 @@ a {
 
 @media (max-width: 768px) {
   .mobile-navbar {
-    position: fixed;
     width: 100%;
     background-color: white;
     z-index: 23;

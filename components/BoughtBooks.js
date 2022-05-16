@@ -11,6 +11,8 @@ export default function BoughtBooks({ list }) {
   const { Moralis, user, isAuthenticated, authenticate } = useMoralis();
   const [books, setBooks] = useState()
 
+  //console.log(user.attributes.books);
+
   /*useEffect(() => {
     const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
     const appId = "vE8qvzkr4JMOcA4WzZDzWB5QOUnTgpoyccVtnrtK"
@@ -58,7 +60,7 @@ export default function BoughtBooks({ list }) {
   return (
     <div className={styles.list}>
       {data.map((e, index) => (
-        <Link key={index} className={styles.book} href={`https://gateway.moralisipfs.com/ipfs/${e['attributes'].hashFile}`} passHref>
+        <Link key={index} className={styles.book} href={`/read/${e['attributes'].hashFile}`} passHref>
           <div>
               <Book data={e} myBook={true}/> 
           </div>

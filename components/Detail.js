@@ -61,7 +61,7 @@ export default function Detail({ data }) {
                 </div>         
             </div>
             <div>
-                <Payment />
+                <Payment data={data}/>
             </div>
             <div className={styles.synopsis_section}>
                 <h3>Synopsis</h3>
