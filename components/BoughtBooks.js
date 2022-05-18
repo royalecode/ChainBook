@@ -1,6 +1,6 @@
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
-import styles from "../styles/BoughtBooks.module.css";
+import styles from "../styles/MyBooks/BoughtBooks.module.css";
 import LoginButton from "../components/Home/CoverButton";
 import React from "react";
 import Book from "./Book"

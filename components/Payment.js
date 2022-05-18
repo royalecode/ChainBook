@@ -1,18 +1,22 @@
-import { useMoralisQuery, useMoralis } from "react-moralis";
+import { useMoralisQuery, useMoralis, useERC20Balances, useMoralisWeb3Api, useNativeBalance } from "react-moralis";
 import {useState, useEffect} from "react"
 import {useRouter} from "next/router";
-import styles from "../styles/Payment.module.css";
-import Link from "next/Link";
+import styles from "../styles/Detail/Payment.module.css";
+import Link from "next/link";
 import Image from "next/image";
-import polygon_icon from "../public/polygon_icon_light.svg";
-import lock_closed from "../public/lock_close.svg";
-import lock_open from "../public/lock_open.svg";
+import polygon_icon from "../public/detail/polygon_icon_light.svg";
+import lock_closed from "../public/detail/lock_close.svg";
+import lock_open from "../public/detail/lock_open.svg";
 
 export default function Payment({data}) {
       
-    const { user, isAuthenticated, authenticate } = useMoralis();
+    const { Moralis, user, isAuthenticated, authenticate, web3, enableWeb3 } = useMoralis();
     const [bought, setBought] = useState(false);
     const router = useRouter();
+    //const { fetchERC20Balances, info, isLoading, isFetching, error } = useERC20Balances();
+    const Web3Api = useMoralisWeb3Api();
+    //const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "mumbai" });
+    const { data: balance } = useNativeBalance({ chain : "mumbai" });
 
     //console.log(user.attributes.books);
 
@@ -29,11 +33,44 @@ export default function Payment({data}) {
         router.push(`/read/${data['attributes'].hashFile}`);
     }
 
+    const fetchTokenBalances = async () => {
+        const options = {
+            chain: "mumbai",
+          };
+        const balances = await Web3Api.account.getTokenBalances(options);
+        console.log("++" ,balances);
+      };
+
     const pay = async function () {
         if (isAuthenticated) {
             console.log("start payment");
             console.log(user.attributes.ethAddress);
             console.log(data['attributes'].claim_wallet);
+
+            await Moralis.enableWeb3();
+            const balances = await Moralis.Web3API.account.getTokenBalances({chain: "mumbai"});
+            console.log("++" ,balances);
+
+            //fetchTokenBalances();
+            //console.log(balance.formatted)
+            //await fetchERC20Balances()
+            //console.log("+++", info, "+++")
+
+            const tokenInfo = { chain: "mumbai", symbols: "MATIC" };
+            const tokenMetadata = await Moralis.Web3API.token.getTokenMetadataBySymbol(tokenInfo);
+            //console.log(tokenMetadata)
+            const contractAddress = tokenMetadata?.address;
+            //console.log(contractAddress);
+            const web3 = await Moralis.enableWeb3();
+
+            /*const options = {
+                type: "erc20", 
+                amount:Moralis.Units.Token("0.000001", "18"), 
+                receiver: "0x40A58f3428886DA65A5b305a68EB1cac9c801d5C", 
+                contractAddress: "0x2fbc97e030d450b3580dbbb54ee4165dd78f6817"
+            }
+            let result = await Moralis.transfer(options)
+            console.log(result);*/
         } else {
             authenticate();
         }

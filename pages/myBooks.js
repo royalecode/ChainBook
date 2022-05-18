@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Navbar from "../components/navbar"
+import Navbar from "../components/Navbar"
 import BoughtBooks from "../components/BoughtBooks"
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
@@ -62,7 +62,6 @@ export default function MyBooks() {
         <BoughtBooks books={getBooks}/>
         <style jsx>{`
             div {
-              padding-top: 45px;
               padding-bottom: 25px;
             }
 

@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Navbar from "../components/navbar"
+import Navbar from "../components/Navbar"
 import Form from "../components/Form"
 import BackButton from "../components/BackButton"
 
@@ -12,14 +12,9 @@ export default function Publish() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar/>
-      <div>
-        <Form/>
-        <style jsx>{`
-            div {
-              padding-top: 45px;
-            }
-          `}</style>
-      </div>
+
+      <Form/>
+        
     </div>
   )
 }

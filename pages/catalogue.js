@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Navbar from "../components/navbar"
+import Navbar from "../components/Navbar"
 import Downloads from "../components/Downloads"
 import Solidity from "../components/Solidity"
 import Farming from "../components/Farming"
@@ -30,7 +30,6 @@ export default function Catalogue() {
           <Farming />
           <style jsx>{`
             div {
-              padding-top: 30px;
               padding-bottom: 30px;
               padding-right: 15px;
             }

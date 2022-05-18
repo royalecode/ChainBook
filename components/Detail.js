@@ -1,11 +1,9 @@
 import Image from "next/image";
-import styles from "../styles/Detail.module.css";
+import styles from "../styles/Detail/Detail.module.css";
 import BackButton from "../components/BackButton";
-import Stars from "../components/Stars";
-import Link from "next/Link";
 import Payment from "../components/Payment";
 import AuthorBooks from "./AuthorBooks";
-import Default_Image from "../public/default_book_image.png";
+import Default_Image from "../public/detail/default_book_image.png";
 import Review from "../components/Review";
 import { useResizeDetector } from "react-resize-detector"
 

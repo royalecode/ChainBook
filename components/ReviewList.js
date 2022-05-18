@@ -1,10 +1,10 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
 import ScrollList from "../components/ScrollList";
-import styles from "../styles/Review.module.css";
+import styles from "../styles/Detail/Review.module.css";
 import Image from "next/image";
-import star_empty from "../public/star-empty.svg";
-import star_filled from "../public/star-filled.svg";
+import star_empty from "../public/detail/star-empty.svg";
+import star_filled from "../public/detail/star-filled.svg";
 import Stars from "../components/Stars";
 
 export default function Review({objectId}) {
