@@ -1,17 +1,14 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
-import ScrollList from "../components/ScrollList";
+import ScrollList from "../ScrollList";
 
-export default function Trading() {
+export default function Bitcoin() {
 
-    const [limit, setLimit] = useState(6)
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .descending("downloads")
-            .limit(limit),
-        [limit],
-        {
+            .equalTo("bitcoin_category", true)
+        ,{
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },
@@ -25,6 +22,6 @@ export default function Trading() {
         return <></>;
     }
       
-    return <ScrollList books={data} title={"Trading"}/>;
+    return <ScrollList books={data} title={"Bitcoin"}/>;
     
 }

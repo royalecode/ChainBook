@@ -1,12 +1,12 @@
 import Head from "next/head"
 import Navbar from "../components/Navbar"
-import Downloads from "../components/Downloads"
-import Solidity from "../components/Solidity"
-import Farming from "../components/Farming"
-import Staking from "../components/Staking"
-import Bitcoin from "../components/Bitcoin"
-import Defi from "../components/Defi"
-import Trading from "../components/Trading"
+import Downloads from "../components/Catalogue/Downloads"
+import Solidity from "../components/Catalogue/Solidity"
+import Farming from "../components/Catalogue/Farming"
+import Staking from "../components/Catalogue/Staking"
+import Bitcoin from "../components/Catalogue/Bitcoin"
+import Defi from "../components/Catalogue/Defi"
+import Trading from "../components/Catalogue/Trading"
 
 export default function Catalogue() {
 

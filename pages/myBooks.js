@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Navbar from "../components/Navbar"
-import BoughtBooks from "../components/BoughtBooks"
+import BoughtBooks from "../components/MyBooks/BoughtBooks"
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import React from "react";

@@ -1,12 +1,12 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
-import ScrollList from "../components/ScrollList";
+import ScrollList from "../ScrollList";
 
-export default function Farming() {
+export default function Solidity() {
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .equalTo("farming_category", true)
+            .equalTo("solidity_category", true)
         ,{
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
@@ -21,6 +21,6 @@ export default function Farming() {
         return <></>;
     }
       
-    return <ScrollList books={data} title={"Farming"}/>;
+    return <ScrollList books={data} title={"Solidity"}/>;
     
 }

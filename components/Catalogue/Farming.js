@@ -1,17 +1,13 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
-import ScrollList from "../components/ScrollList";
+import ScrollList from "../ScrollList";
 
-export default function Downloads() {
-
-    const [limit, setLimit] = useState(6)
+export default function Farming() {
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .descending("downloads")
-            .limit(limit),
-        [limit],
-        {
+            .equalTo("farming_category", true)
+        ,{
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },
@@ -25,6 +21,6 @@ export default function Downloads() {
         return <></>;
     }
       
-    return <ScrollList books={data} title={"Most Downloads"}/>;
+    return <ScrollList books={data} title={"Farming"}/>;
     
 }

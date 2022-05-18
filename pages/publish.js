@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Navbar from "../components/Navbar"
-import Form from "../components/Form"
+import Form from "../components/Publish/Form"
 import BackButton from "../components/BackButton"
 
 export default function Publish() {

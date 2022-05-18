@@ -1,9 +1,9 @@
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
-import styles from "../styles/MyBooks/BoughtBooks.module.css";
-import LoginButton from "../components/Home/CoverButton";
+import styles from "../../styles/MyBooks/BoughtBooks.module.css";
+import LoginButton from "../Home/CoverButton";
 import React from "react";
-import Book from "./Book"
+import Book from "../Book"
 import Link from "next/link"
 
 export default function BoughtBooks({ list }) {

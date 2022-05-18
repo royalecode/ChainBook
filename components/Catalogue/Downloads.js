@@ -1,13 +1,17 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
-import ScrollList from "../components/ScrollList";
+import ScrollList from "../ScrollList";
 
-export default function Solidity() {
+export default function Downloads() {
+
+    const [limit, setLimit] = useState(10)
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .equalTo("solidity_category", true)
-        ,{
+            .descending("downloads")
+            .limit(limit),
+        [limit],
+        {
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },
@@ -21,6 +25,6 @@ export default function Solidity() {
         return <></>;
     }
       
-    return <ScrollList books={data} title={"Solidity"}/>;
+    return <ScrollList books={data} title={"Most Downloads"}/>;
     
 }

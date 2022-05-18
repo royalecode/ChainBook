@@ -1,12 +1,12 @@
 import { useMoralisQuery, useMoralis, useERC20Balances, useMoralisWeb3Api, useNativeBalance } from "react-moralis";
 import {useState, useEffect} from "react"
 import {useRouter} from "next/router";
-import styles from "../styles/Detail/Payment.module.css";
+import styles from "../../styles/Detail/Payment.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import polygon_icon from "../public/detail/polygon_icon_light.svg";
-import lock_closed from "../public/detail/lock_close.svg";
-import lock_open from "../public/detail/lock_open.svg";
+import polygon_icon from "../../public/detail/polygon_icon_light.svg";
+import lock_closed from "../../public/detail/lock_close.svg";
+import lock_open from "../../public/detail/lock_open.svg";
 
 export default function Payment({data}) {
       

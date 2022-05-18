@@ -1,5 +1,5 @@
 import { useMoralisQuery } from "react-moralis";
-import ScrollList from "./ScrollList";
+import ScrollList from "../ScrollList";
 
 export default function Detail({ author }) {
       

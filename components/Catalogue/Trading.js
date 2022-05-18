@@ -1,13 +1,17 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState} from "react"
-import ScrollList from "../components/ScrollList";
+import ScrollList from "../ScrollList";
 
-export default function DeFi() {
+export default function Trading() {
+
+    const [limit, setLimit] = useState(6)
 
     const { data, error, isLoading } = useMoralisQuery("Article", query =>
         query
-            .equalTo("defi_category", true)
-        ,{
+            .descending("downloads")
+            .limit(limit),
+        [limit],
+        {
             live: true,
             onLiveEnter: (entity, all) => [...all, entity],
         },
@@ -21,6 +25,6 @@ export default function DeFi() {
         return <></>;
     }
       
-    return <ScrollList books={data} title={"Decentralized Finance"}/>;
+    return <ScrollList books={data} title={"Trading"}/>;
     
 }

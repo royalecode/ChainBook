@@ -1,10 +1,10 @@
 import Image from "next/image";
-import styles from "../styles/Detail/Detail.module.css";
-import BackButton from "../components/BackButton";
-import Payment from "../components/Payment";
+import styles from "../../styles/Detail/Detail.module.css";
+import BackButton from "../BackButton";
+import Payment from "./Payment";
 import AuthorBooks from "./AuthorBooks";
-import Default_Image from "../public/detail/default_book_image.png";
-import Review from "../components/Review";
+import Default_Image from "../../public/detail/default_book_image.png";
+import Review from "./Review";
 import { useResizeDetector } from "react-resize-detector"
 
 export default function Detail({ data }) {

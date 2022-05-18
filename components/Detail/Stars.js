@@ -1,8 +1,8 @@
 import { useMoralisQuery } from "react-moralis";
 import {useState, useEffect} from "react"
-import ScrollList from "../components/ScrollList";
-import star_empty from "../public/detail/star-empty.svg";
-import star_filled from "../public/detail/star-filled.svg";
+import ScrollList from "../ScrollList";
+import star_empty from "../../public/detail/star-empty.svg";
+import star_filled from "../../public/detail/star-filled.svg";
 import Image from "next/image";
 
 export default function Stars({number}) {

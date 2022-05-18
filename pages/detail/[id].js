@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Navbar from '../../components/Navbar';
-import Detail from "../../components/Detail";
+import Detail from "../../components/Detail/Detail";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useMoralisQuery } from "react-moralis";

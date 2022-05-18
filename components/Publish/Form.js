@@ -5,9 +5,9 @@ import { useMoralis, useTokenPrice } from "react-moralis";
 import Image from "next/image";
 import Router from 'next/router'
 
-import styles from '../styles/Publish/Form.module.css'
-import polygon_icon from '../public/publish/polygon_crypto_icon.svg'
-import exchange_arrow from '../public/publish/exchange_arrows.svg'
+import styles from '../../styles/Publish/Form.module.css'
+import polygon_icon from '../../public/publish/polygon_crypto_icon.svg'
+import exchange_arrow from '../../public/publish/exchange_arrows.svg'
 
 const fileTypes = ["pdf"];
 
