@@ -13,16 +13,10 @@ export default function Payment({data}) {
     const { Moralis, user, isAuthenticated, authenticate, web3, enableWeb3 } = useMoralis();
     const [bought, setBought] = useState(false);
     const router = useRouter();
-    //const { fetchERC20Balances, info, isLoading, isFetching, error } = useERC20Balances();
-    const Web3Api = useMoralisWeb3Api();
-    //const { getBalances, data: balance, nativeToken, error, isLoading } = useNativeBalance({ chain : "mumbai" });
-    const { data: balance } = useNativeBalance({ chain : "mumbai" });
-
-    //console.log(user.attributes.books);
 
     useEffect(() => {
         if (isAuthenticated && user != null) {
-            if (user.attributes.books.indexOf(data['id']) > -1) {
+            if (user.attributes.books?.indexOf(data['id']) > -1) {
                 setBought(true);
             }
         }
@@ -33,44 +27,31 @@ export default function Payment({data}) {
         router.push(`/read/${data['attributes'].hashFile}`);
     }
 
-    const fetchTokenBalances = async () => {
-        const options = {
-            chain: "mumbai",
-          };
-        const balances = await Web3Api.account.getTokenBalances(options);
-        console.log("++" ,balances);
-      };
-
     const pay = async function () {
         if (isAuthenticated) {
             console.log("start payment");
             console.log(user.attributes.ethAddress);
             console.log(data['attributes'].claim_wallet);
 
-            await Moralis.enableWeb3();
-            const balances = await Moralis.Web3API.account.getTokenBalances({chain: "mumbai"});
-            console.log("++" ,balances);
-
-            //fetchTokenBalances();
-            //console.log(balance.formatted)
-            //await fetchERC20Balances()
-            //console.log("+++", info, "+++")
-
-            const tokenInfo = { chain: "mumbai", symbols: "MATIC" };
-            const tokenMetadata = await Moralis.Web3API.token.getTokenMetadataBySymbol(tokenInfo);
-            //console.log(tokenMetadata)
-            const contractAddress = tokenMetadata?.address;
-            //console.log(contractAddress);
-            const web3 = await Moralis.enableWeb3();
-
-            /*const options = {
+            //0x40A58f3428886DA65A5b305a68EB1cac9c801d5C
+            //0x9311818E3ea3C65B7DF2D1bA0FBd4D78D23d0758
+            const options = {
                 type: "erc20", 
-                amount:Moralis.Units.Token("0.000001", "18"), 
-                receiver: "0x40A58f3428886DA65A5b305a68EB1cac9c801d5C", 
-                contractAddress: "0x2fbc97e030d450b3580dbbb54ee4165dd78f6817"
+                amount: Moralis.Units.Token("1", "18"), 
+                receiver: "0x9311818E3ea3C65B7DF2D1bA0FBd4D78D23d0758", 
+                contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889"
             }
             let result = await Moralis.transfer(options)
-            console.log(result);*/
+            console.log(result);
+
+            /*const update = async () => {
+                console.log(user.attributes.books);
+                let books = user.attributes.books;
+                books.push("qxudCvJASSbhpyxUziH8HEv1");
+                user.set("books", books);
+                await user.save();
+                console.log(user.attributes.books);
+            }*/
         } else {
             authenticate();
         }

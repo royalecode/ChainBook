@@ -11,7 +11,7 @@ export default function BoughtBooks({ list }) {
   const { Moralis, user, isAuthenticated, authenticate } = useMoralis();
   const [books, setBooks] = useState()
 
-  //console.log(user.attributes.books);
+  console.log(user?.attributes.books);
 
   /*useEffect(() => {
     const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
@@ -68,13 +68,4 @@ export default function BoughtBooks({ list }) {
       ))}
     </div>
   )
-
-  /*const update = async () => {
-    console.log(user.attributes.books);
-    let books = user.attributes.books;
-    books.push("qxudCvJASSbhpyxUziH8HEv1");
-    user.set("books", books);
-    await user.save();
-    console.log(user.attributes.books);
-  }*/
 }

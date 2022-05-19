@@ -27,7 +27,7 @@ export default function Navbar(){
 
     const authentication = () => {
         if (!isAuthenticated && !isAuthenticating) {
-            authenticate;
+            authenticate();
         }
     }
 
