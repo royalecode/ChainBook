@@ -21,6 +21,24 @@ a {
   box-sizing: border-box;
 }
 
+#library {
+  padding-bottom: 30px;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: 1200px) {
+  #library {
+    margin: 0 20vw;
+    overflow: scroll;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar {
+    margin: 0 20vw;
+  }
+}
+
 .navbar-title {
   color: #DF783D;
   font-family: 'Bitter', serif;

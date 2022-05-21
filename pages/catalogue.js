@@ -28,12 +28,6 @@ export default function Catalogue() {
           <Staking />
           <Trading />
           <Farming />
-          <style jsx>{`
-            div {
-              padding-bottom: 30px;
-              padding-right: 15px;
-            }
-        `}</style>
         </div>
 
       </div>

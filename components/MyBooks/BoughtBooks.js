@@ -6,7 +6,7 @@ import React from "react";
 import Book from "../Book"
 import Link from "next/link"
 
-export default function BoughtBooks({ list }) {
+export default function BoughtBooks( ) {
 
   const { Moralis, user, isAuthenticated, authenticate } = useMoralis();
   const [books, setBooks] = useState()
@@ -21,7 +21,7 @@ export default function BoughtBooks({ list }) {
     setBooks(userBooks);
   }, [Moralis])*/
 
-  useEffect(() => {
+  /*useEffect(() => {
     const interval = setInterval(() => {
       if (isAuthenticated) {
         setBooks(user.attributes.books); 
@@ -30,12 +30,18 @@ export default function BoughtBooks({ list }) {
     return () => {
       if (isAuthenticated) clearInterval(interval);
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user]);*/
+
+  /*useEffect(() => {
+    if (isAuthenticated) {
+      setBooks(user?.attributes.books);
+    }
+  }, [isAuthenticated, user?.attributes.books])*/
 
   const { data, error, isLoading } = useMoralisQuery("Article", query => {
-      return query.containedIn("objectId", books)
+      return query.containedIn("objectId", user?.attributes.books)
     },
-      [books], {
+      [user?.attributes.books], {
       live: true,
       onLiveEnter: (entity, all) => [...all, entity],
     }

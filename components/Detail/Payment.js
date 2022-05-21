@@ -1,4 +1,5 @@
 import { useMoralisQuery, useMoralis, useERC20Balances, useMoralisWeb3Api, useNativeBalance } from "react-moralis";
+import { useWeb3Transfer } from "react-moralis";
 import {useState, useEffect} from "react"
 import {useRouter} from "next/router";
 import styles from "../../styles/Detail/Payment.module.css";
@@ -15,17 +16,36 @@ export default function Payment({data}) {
     const router = useRouter();
 
     useEffect(() => {
+        Moralis.enableWeb3();
         if (isAuthenticated && user != null) {
             if (user.attributes.books?.indexOf(data['id']) > -1) {
                 setBought(true);
             }
         }
-    }, [data, isAuthenticated, user])
+    }, [Moralis, data, isAuthenticated, user])
 
 
     const readBook = async function () {
         router.push(`/read/${data['attributes'].hashFile}`);
     }
+
+    const { fetch, error, isFetching } = useWeb3Transfer({
+        amount: Moralis.Units.Token(0.01),
+        receiver: "0x40A58f3428886DA65A5b305a68EB1cac9c801d5C",
+        type: "erc20",
+        contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",
+    });
+
+    const TransferWeth = async () => {
+        const { fetch, error, isFetching } = useWeb3Transfer({
+          amount: Moralis.Units.Token(2, 18),
+          receiver: "0x40A58f3428886DA65A5b305a68EB1cac9c801d5C",
+          type: "erc20",
+          contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",
+        });
+    }
+
+    console.log(error)
 
     const pay = async function () {
         if (isAuthenticated) {
@@ -72,7 +92,7 @@ export default function Payment({data}) {
             <div className={styles.payment}>
                 <h3 className={styles.title}>Payment</h3>
                 <div>
-                    <button className={styles.pay} disabled={bought} onClick={pay}>
+                    <button className={styles.pay} disabled={bought} onClick={() => fetch()}>
                         <div className={styles.price}>
                             <p>{data['attributes'].price} MATIC</p>
                             <div className={styles.icon}>

@@ -13,6 +13,12 @@
     padding: 30px 15px;
 }
 
+@media screen and (min-width: 1200px) {
+    .detail {
+      margin: 0 20vw;
+    }
+  }
+
 .info {
     display: flex;
     justify-content: center;

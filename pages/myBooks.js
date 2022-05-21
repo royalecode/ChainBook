@@ -4,20 +4,9 @@ import BoughtBooks from "../components/MyBooks/BoughtBooks"
 import { useMoralisQuery, useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import React from "react";
+import styles from "../styles/MyBooks/BoughtBooks.module.css";
 
 export default function MyBooks() {
-
-  const {Moralis, user, isAuthenticated} = useMoralis();
-
-  const [books, setBooks] = useState()
-
-  const { getBooks } = async function () {
-    const serverUrl = "https://x3d9ac64hx5b.usemoralis.com:2053/server"
-    const appId = "vE8qvzkr4JMOcA4WzZDzWB5QOUnTgpoyccVtnrtK"
-    Moralis.start({serverUrl, appId})
-    let userBooks = Moralis.User.current().attributes.books;
-    return userBooks;
-  }
 
   /*const update = async () => {
     console.log(user.attributes.books);
@@ -57,18 +46,9 @@ export default function MyBooks() {
 
       <Navbar/>
 
-      <div>
-        <h2>My Books</h2>
-        <BoughtBooks books={getBooks}/>
-        <style jsx>{`
-            div {
-              padding-bottom: 25px;
-            }
-
-            h2 {
-              padding-left: 15px;
-            }
-          `}</style>
+      <div className={styles.body}>
+        <h2 className={styles.title}>My Books</h2>
+        <BoughtBooks />
       </div>
     </div>
   )
