@@ -29,7 +29,6 @@ a {
 @media screen and (min-width: 1200px) {
   #library {
     margin: 0 20vw;
-    overflow: scroll;
   }
 }
 
