@@ -64,13 +64,12 @@ export default function Payment({data}) {
             let result = await Moralis.transfer(options)
             console.log(result);
 
-            /*const update = async () => {
-                console.log(user.attributes.books);
+            /*if (result) {
+                setBought(true);
                 let books = user.attributes.books;
                 books.push("qxudCvJASSbhpyxUziH8HEv1");
                 user.set("books", books);
                 await user.save();
-                console.log(user.attributes.books);
             }*/
         } else {
             authenticate();
