@@ -5,7 +5,7 @@ import Solidity from "../components/Catalogue/Solidity"
 import Farming from "../components/Catalogue/Farming"
 import Staking from "../components/Catalogue/Staking"
 import Bitcoin from "../components/Catalogue/Bitcoin"
-import Defi from "../components/Catalogue/Defi"
+import DeFi from "../components/Catalogue/DeFi"
 import Trading from "../components/Catalogue/Trading"
 
 export default function Catalogue() {
@@ -24,7 +24,7 @@ export default function Catalogue() {
           <Downloads />
           <Solidity />
           <Bitcoin />
-          <Defi />
+          <DeFi />
           <Staking />
           <Trading />
           <Farming />
