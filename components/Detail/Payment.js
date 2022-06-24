@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 import styles from "../../styles/Detail/Payment.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import polygon_icon from "../../public/detail/polygon_icon_light.svg";
+import ethereum_icon from "../../public/detail/ethereum_icon_light.svg";
 import lock_closed from "../../public/detail/lock_close.svg";
 import lock_open from "../../public/detail/lock_open.svg";
 
@@ -47,7 +47,7 @@ export default function Payment({data}) {
 
     console.log(error)
 
-    const pay = async function () {
+    /*const pay = async function () {
         if (isAuthenticated) {
             console.log("start payment");
             console.log(user.attributes.ethAddress);
@@ -70,7 +70,33 @@ export default function Payment({data}) {
                 books.push("qxudCvJASSbhpyxUziH8HEv1");
                 user.set("books", books);
                 await user.save();
-            }*/
+            }
+        } else {
+            authenticate();
+        }
+    }*/
+    
+
+    const pay = async function () {
+        if (isAuthenticated) {
+            const options = {
+                type: "native", 
+                //amount: Moralis.Units.Token(data['attributes'].price, "18"), 
+                amount: Moralis.Units.Token("0.001", "18"), 
+                receiver: data['attributes'].claim_wallet, 
+            }
+            let result = await Moralis.transfer(options)
+
+            if (result) {
+                console.log("entrem");
+                let books = user.attributes.books;
+                console.log(books);
+                books?.push(data['id']);
+                console.log(books);
+                user.set("books", books);
+                await user.save();
+                setBought(true);
+            }
         } else {
             authenticate();
         }
@@ -91,13 +117,13 @@ export default function Payment({data}) {
             <div className={styles.payment}>
                 <h3 className={styles.title}>Payment</h3>
                 <div>
-                    <button className={styles.pay} disabled={bought} onClick={() => fetch()}>
+                    <button className={styles.pay} disabled={bought} onClick={() => pay()}>
                         <div className={styles.price}>
-                            <p>{data['attributes'].price} MATIC</p>
+                            <p>{data['attributes'].price} ETH</p>
                             <div className={styles.icon}>
                                 <Image
-                                    src={polygon_icon}
-                                    alt='Polygon Logo'
+                                    src={ethereum_icon}
+                                    alt='Ethereum Logo'
                                     width={20}
                                     height={20}
                                 />

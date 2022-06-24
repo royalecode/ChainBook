@@ -1,8 +1,7 @@
 import Image from "next/image"
 import Default_Image from "../public/detail/default_book_image.png"
 import styles from "../styles/Books.module.css"
-import polygon_icon from "../public/publish/polygon_crypto_icon.svg"
-import Link from "next/link"
+import ethereum_icon from "../public/publish/ethereum_crypto_icon.svg"
 import { useResizeDetector } from "react-resize-detector"
 
 export default function Library({ data, myBook }) {
@@ -50,8 +49,8 @@ export default function Library({ data, myBook }) {
                     <div className={styles.price_group}>
                         <p className={styles.price}>{data['attributes'].price}</p>
                         <Image
-                            src={polygon_icon}
-                            alt='Polygon Logo'
+                            src={ethereum_icon}
+                            alt='Ethereum Logo'
                             width={18}
                             height={18}
                         />

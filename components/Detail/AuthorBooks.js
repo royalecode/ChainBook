@@ -29,7 +29,7 @@ export default function Detail({ author }) {
             {data.length > 1 &&
                 <div>
                     <h3>Same Author</h3>
-                    <ScrollList books={data} title={"Same author"} isTitle={true}/>
+                    <ScrollList books={data} title={"Same author"} isTitle={true} pathChange={true}/>
                 </div>
             }
         </div>

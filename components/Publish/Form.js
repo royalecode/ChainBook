@@ -6,7 +6,7 @@ import Image from "next/image";
 import Router from 'next/router'
 
 import styles from '../../styles/Publish/Form.module.css'
-import polygon_icon from '../../public/publish/polygon_crypto_icon.svg'
+import etheruem_icon from '../../public/publish/ethereum_crypto_icon.svg'
 import exchange_arrow from '../../public/publish/exchange_arrows.svg'
 
 const fileTypes = ["pdf"];
@@ -339,8 +339,8 @@ export default function Form() {
                             name="price" placeholder="0.00"/>                        
                         <div className={styles.crypto_convertor}>
                             <Image
-                                src={polygon_icon}
-                                alt='Polygon Logo'
+                                src={etheruem_icon}
+                                alt='Ethereum Logo'
                                 width={26}
                                 height={26}  
                             />
