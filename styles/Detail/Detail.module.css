@@ -17,11 +17,30 @@
     .detail {
       margin: 0 20vw;
     }
+
+    .main_info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .payment {
+        width: 40vw;
+    }
   }
+/*
+.main_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}*/
 
 .info {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .info > div {

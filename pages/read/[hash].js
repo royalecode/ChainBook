@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Navbar from '../../components/Navbar';
 import { Worker } from '@react-pdf-viewer/core';
 import { Viewer } from '@react-pdf-viewer/core';
+
+// Import styles
 import '@react-pdf-viewer/core/lib/styles/index.css';
 
 

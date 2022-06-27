@@ -20,46 +20,48 @@ export default function Detail({ data }) {
     return (
         <div className={styles.detail}>
             <BackButton />
-            <div className={styles.info}>
-                <div>
-                    <div className={styles.image} ref={coverRef}>
-                        {!data['attributes'].isDefaultImage &&
-                            <Image
-                                src={`https://gateway.moralisipfs.com/ipfs/${data['attributes'].hashImage}`}
-                                width={595}
-                                height={842}
-                                alt={data['attributes'].title}
-                                priority
-                            />
-                        }
-
-                        {data['attributes'].isDefaultImage &&
-                            <Image
-                                src={Default_Image}
-                                width={595}
-                                height={842}
-                                alt={data['attributes'].title}
-                                priority
-                            />
-                        }
-
-                        <style jsx>{`
-                            div {
-                                height: ${coverWidth*1.414}px;
+            <div className={styles.main_info}>
+                <div className={styles.info}>
+                    <div>
+                        <div className={styles.image} ref={coverRef}>
+                            {!data['attributes'].isDefaultImage &&
+                                <Image
+                                    src={`https://gateway.moralisipfs.com/ipfs/${data['attributes'].hashImage}`}
+                                    width={595}
+                                    height={842}
+                                    alt={data['attributes'].title}
+                                    priority
+                                />
                             }
-                        `}</style>
-                    </div>
-                    <h2 className={styles.title}>{data['attributes'].title}</h2>
-                    {regExp.test(data['attributes'].author) &&
-                        <p className={styles.author}><span className={styles.span}>from </span>{data['attributes'].author}</p>
-                    }
-                    {!regExp.test(data['attributes'].author) &&
-                        <p className={styles.author}><span className={styles.span}>from </span>None</p>
-                    } 
-                </div>         
-            </div>
-            <div>
-                <Payment data={data}/>
+
+                            {data['attributes'].isDefaultImage &&
+                                <Image
+                                    src={Default_Image}
+                                    width={595}
+                                    height={842}
+                                    alt={data['attributes'].title}
+                                    priority
+                                />
+                            }
+
+                            <style jsx>{`
+                                div {
+                                    height: ${coverWidth*1.414}px;
+                                }
+                            `}</style>
+                        </div>
+                        <h2 className={styles.title}>{data['attributes'].title}</h2>
+                        {regExp.test(data['attributes'].author) &&
+                            <p className={styles.author}><span className={styles.span}>from </span>{data['attributes'].author}</p>
+                        }
+                        {!regExp.test(data['attributes'].author) &&
+                            <p className={styles.author}><span className={styles.span}>from </span>None</p>
+                        } 
+                    </div>         
+                </div>
+                <div className={styles.payment}>
+                    <Payment data={data}/>
+                </div>
             </div>
             <div className={styles.synopsis_section}>
                 <h3>Synopsis</h3>

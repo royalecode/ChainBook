@@ -11,7 +11,8 @@ import lock_open from "../../public/detail/lock_open.svg";
 
 export default function Payment({data}) {
       
-    const { Moralis, user, isAuthenticated, authenticate, web3, enableWeb3 } = useMoralis();
+    const { Moralis, user, isAuthenticated, authenticate, web3
+     } = useMoralis();
     const [bought, setBought] = useState(false);
     const router = useRouter();
 
@@ -36,47 +37,6 @@ export default function Payment({data}) {
         contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",
     });
 
-    const TransferWeth = async () => {
-        const { fetch, error, isFetching } = useWeb3Transfer({
-          amount: Moralis.Units.Token(2, 18),
-          receiver: "0x40A58f3428886DA65A5b305a68EB1cac9c801d5C",
-          type: "erc20",
-          contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",
-        });
-    }
-
-    console.log(error)
-
-    /*const pay = async function () {
-        if (isAuthenticated) {
-            console.log("start payment");
-            console.log(user.attributes.ethAddress);
-            console.log(data['attributes'].claim_wallet);
-
-            //0x40A58f3428886DA65A5b305a68EB1cac9c801d5C
-            //0x9311818E3ea3C65B7DF2D1bA0FBd4D78D23d0758
-            const options = {
-                type: "erc20", 
-                amount: Moralis.Units.Token("1", "18"), 
-                receiver: "0x9311818E3ea3C65B7DF2D1bA0FBd4D78D23d0758", 
-                contractAddress: "0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889"
-            }
-            let result = await Moralis.transfer(options)
-            console.log(result);
-
-            /*if (result) {
-                setBought(true);
-                let books = user.attributes.books;
-                books.push("qxudCvJASSbhpyxUziH8HEv1");
-                user.set("books", books);
-                await user.save();
-            }
-        } else {
-            authenticate();
-        }
-    }*/
-    
-
     const pay = async function () {
         if (isAuthenticated) {
             const options = {
@@ -88,11 +48,11 @@ export default function Payment({data}) {
             let result = await Moralis.transfer(options)
 
             if (result) {
-                console.log("entrem");
                 let books = user.attributes.books;
-                console.log(books);
+                if (books == undefined) {
+                    books = [];
+                }
                 books?.push(data['id']);
-                console.log(books);
                 user.set("books", books);
                 await user.save();
                 setBought(true);
